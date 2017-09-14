@@ -1,0 +1,4 @@
+@import "../tpls/base.wxss";
+@import "../tpls/articles/articles-tpl.wxss";
+
+

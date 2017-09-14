@@ -1,0 +1,32 @@
+<import src="../wemark/wemark.wxml"/>
+<view class="container detail-container article" hidden="{{!loadingHidden}}">
+  <!-- User Info -->
+  <view class="article-head">
+    <view class="head-left">
+      <image
+        class="avatar"
+        src="{{ product.authorId.headimgurl }}">
+      </image>
+    </view>
+    <view class="head-right">
+      <view class="user-name">
+        <text>{{ product.title }}</text>
+      </view>
+      <text class="time-and-from">{{ product.created_time + ' 来自 ' + product.authorId.name }}</text>
+    </view>
+  </view>
+  <view class="article-middle" >
+    <view class="pay" ontap="toPay" data-id="{{product._id}}" data-type="{{product.single}}" data-target="{{product.single ? product._id:  product.topicId._id}}">
+        {{"购买"}}
+    </view>
+  </view>
+
+
+  <view class="article-body">
+    <template is="wemark" data="{{...wemark}}"/>
+  </view>
+
+</view>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>

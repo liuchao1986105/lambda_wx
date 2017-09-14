@@ -1,0 +1,28 @@
+<template name="articles">
+  <view class="my-order">
+    <!--<view class="item-title">社区</view> -->
+    <view class="item-main">
+      <block wx:for="{{articlesArr}}" wx:key="{{_id}}">
+        <view class="order-item">
+
+          <view class="order-main" bindtap="onProductsItemTap" data-id="{{item._id}}">
+            <view class="item-left">
+              <image src="{{ item.authorId.headimgurl+'?imageslim' }}"></image>
+            </view>
+            <view class="item-middle">
+              <view>{{item.title}}</view>
+              <view>{{ item.authorId.name }}   {{item.created_time}}</view>
+            </view>
+            <view class="item-right">
+              <view >{{item.visitCount}}</view>
+            </view>
+          </view>
+          <view class="order-bottom">
+            <view data-id="{{item.topicId._id}}" data-name="{{item.topicId.title}}" bindtap="onThemeItemTap">{{item.topicId.title}}</view>
+            <view class="pay" ontap="toggleLike" data-type="{{item.type}}" data-id="{{item._id}}" data-status="{{item.isLike}}" data-index="{{index}}">{{item.isLike == true ? "已收藏" : "收藏"}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>

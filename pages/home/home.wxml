@@ -1,0 +1,35 @@
+<import src="../tpls/products/products-tpl.wxml"/>
+<view class="container home-container" hidden="{{!loadingHidden}}">
+    <swiper indicator-dots="true" autoplay="true" class="swiper">
+        <block wx:for="{{bannerArr}}" wx:key="{{_id}}">
+            <swiper-item class="banner-item" bindtap="onProductsItemTap" data-id="{{item._id}}">
+                <view bindtap="onProductsItemTap" data-id="{{item._id}}" style="background:url({{item.cover}});background-repeat:no-repeat;background-size:contain" class="banner-image"></view>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="home-main">
+        <!--主题精选-->
+        <view class="home-main-theme">
+            <view class="home-main-header">精选主题</view>
+            <view class="theme-box">
+                <block wx:for="{{themeArr}}" wx:key="{{_id}}">
+                    <view wx:if="{{index%3==0}}" class="theme-item big" bindtap="onThemesItemTap" data-id="{{item._id}}" data-name="{{item.title}}">
+                        <image src="{{item.img}}"></image>
+                    </view>
+                    <view wx:else class="theme-item" bindtap="onThemesItemTap" 
+                    data-id="{{item._id}}" data-name="{{item.title}}">
+                        <image src="{{item.img}}"></image>
+                    </view>
+                </block>
+            </view>
+        </view>
+        <!--单品首发-->
+        <view class="home-main-products">
+            <view class="home-main-header">最近新品</view>
+            <template is="products" data="{{productsArr:productsArr}}"/>
+        </view>
+    </view>
+</view>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>

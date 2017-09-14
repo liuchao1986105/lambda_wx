@@ -1,0 +1,82 @@
+<import src="../tpls/articles/articles-tpl.wxml"/>
+<!--<view class="container theme-container" hidden="{{!loadingHidden}}">
+    <view class="theme-header">
+        <image src="{{themeInfo.head_img.url}}" mode="aspectFill" />
+    </view>
+    <view class="theme-main">
+        <template is="products" data="{{productsArr:themeInfo.products}}"/>
+    </view>
+</view>  -->
+
+
+<view class="container detail-container" hidden="{{!loadingHidden}}">
+    <view class="detail-header-box">
+        <!-- <view class="fixed-btns-box" bindtap="onCartTap">
+            <view class="fiexd-cart {{isShake?'animate':''}}">
+                <image src="../../imgs/icon/cart@top.png"></image>
+                <view wx:if="{{cartTotalCounts>0}}">{{cartTotalCounts}}</view>
+            </view>
+        </view> -->
+        <view class="detail-topic-img">
+            <image src="{{themeInfo.img}}" ></image>
+        </view>
+        <view class="cart-box">
+            <view class="product-counts">
+               <!-- <picker class="{{product.stock==0?'disabled':''}}" bindchange="bindPickerChange" value="{{index}}"  
+               range="{{countsArray}}">  
+                        <text class="counts-tips">数量</text>
+                        <text class="counts-data">{{productCounts}}</text>
+                        <image class="counts-icon" src="../../imgs/icon/arrow@down.png"></image>
+                    </view>
+                </picker>--> 
+
+                <view>
+                    <text class="counts-tips">收录资源</text>
+                    <text class="counts-data">{{themeInfo.numberOfArticles + themeInfo.numberOfVideos + themeInfo.numberOfBooks}}</text>
+                </view>
+            </view>
+            <view class="middle-border"></view>
+            <view class="add-cart-btn {{product.stock==0?'disabled':''}}" bindtap="onAddingToCartTap">
+                <text>关注者</text>
+                <text class="counts-data">{{themeInfo.defaultCollects + themeInfo.collects.length}}</text>
+                <!-- <image class="cart-icon" src="../../imgs/icon/cart.png"></image>-->
+                <!-- <image id="small-top-img" class="small-top-img {{isFly?'animate':''}}" 
+                       src="{{product.main_img_url}}" mode="aspectFill" style="{{translateStyle}}"></image>  -->
+            </view>
+        </view>
+        <view class="basic-info-box">
+            <!--<view class="stock" wx:if="{{product.stock>0}}">有货</view>
+            <view class="stock no" wx:else>缺货</view> -->
+            <view class="name">{{themeInfo.title}}  -  {{themeInfo.price}}元</view>
+            <view class="price"></view>
+            <view class="middle" >
+                <view class="pay" ontap="toPay" data-id="{{themeInfo._id}}">
+                    {{"购买"}}
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="detail-bottom-box">
+        <view class="tabs-box">
+            <block wx:for="{{['视频教程' ,'书籍', '文章']}}">
+                <view class="tabs-item {{currentTabsIndex==index?'selected':''}}" bindtap="onTabsItemTap" data-index="{{index}}">
+                    {{item}}
+                </view>
+            </block>
+        </view>
+        <view class="product-detail-box">
+            <view class="product-detail-imgs" hidden="{{currentTabsIndex!=0}}">
+                <template is="articles" data="{{articlesArr:videos}}"/>
+            </view>
+            <view class="product-detail-properties" hidden="{{currentTabsIndex!=1}}">
+                <template is="articles" data="{{articlesArr:articles}}"/>
+            </view>
+            <view class="product-detail-protect" hidden="{{currentTabsIndex!=2}}">
+                <view></view>
+            </view>
+        </view>
+    </view>
+</view>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>

@@ -1,0 +1,9 @@
+<import src="../tpls/articles/articles-tpl.wxml"/>
+<view class="container" hidden="{{!loadingHidden}}">
+    <view>
+        <template is="articles" data="{{articlesArr:docsInfo}}"/>
+    </view>
+</view>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>
